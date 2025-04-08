@@ -18,6 +18,10 @@ func GetUserInfo() gin.HandlerFunc {
 		}
 		userRepo := db.NewGormUserRepository()
 		res := db.GetUserInfo(userRepo, jsonInput.UserName)
+		if res.UserName == "" {
+			c.Status(http.StatusNotFound)
+			return
+		}
 		c.Status(http.StatusOK)
 		c.JSON(http.StatusOK, res)
 	}

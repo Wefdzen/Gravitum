@@ -1,5 +1,0 @@
-PG_host: "localhost"
-PG_port: "5432"
-PG_user: "postgres"
-PG_db_name: "postgres"
-PG_password: "12345"

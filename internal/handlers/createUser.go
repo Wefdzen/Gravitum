@@ -17,6 +17,12 @@ func CreateUser() gin.HandlerFunc {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		}
 		userRepo := db.NewGormUserRepository()
+		if jsonInput.UserName == "" || jsonInput.Password == "" {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"error": "your name or passowrd is empty!",
+			})
+		}
+		// по хорошему проверять занят ли ник но по task нету уточнений
 		db.CreateUser(userRepo, &jsonInput)
 		c.Status(http.StatusCreated)
 	}

@@ -1,0 +1,30 @@
+services:
+    postgres:
+        image: postgres:latest
+        container_name: my_postgres
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: 12345
+            POSTGRES_DB: postgres
+        ports:
+            - "5432:5432"
+        networks:
+            - app-network
+
+    gravitum:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: gravitum
+        depends_on:
+            - postgres
+        ports:
+            - "8080:8080"
+        networks:
+            - app-network
+
+networks:
+    app-network:
+#docker-compose down
+#docker-compose ps
+#docker-compose up -d
