@@ -1,0 +1,79 @@
+openapi: 3.0.3
+info:
+    title: Gravitum API
+    description: API для управления пользователями
+    version: "1.0.0"
+
+servers:
+    - url: http://localhost:8080
+
+paths:
+    /users/:
+        post:
+            summary: Создать нового пользователя
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/User"
+            responses:
+                "201":
+                    description: Пользователь успешно создан
+                "400":
+                    description: Неверный запрос
+        get:
+            summary: Получить информацию о пользователе
+            parameters:
+                - name: username
+                  in: query
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                "200":
+                    description: Успешный ответ
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/User"
+                "404":
+                    description: Пользователь не найден
+
+        put:
+            summary: Обновить информацию о пользователе
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: "#/components/schemas/UpdateData"
+            responses:
+                "200":
+                    description: Информация обновлена
+                "400":
+                    description: Неверный запрос
+
+components:
+    schemas:
+        User:
+            type: object
+            properties:
+                username:
+                    type: string
+                password:
+                    type: string
+            required:
+                - username
+                - password
+        UpdateData:
+            type: object
+            properties:
+                username:
+                    type: string
+                newusername:
+                    type: string
+                newpassword:
+                    type: string
+            required:
+                - username

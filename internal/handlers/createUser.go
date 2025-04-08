@@ -22,7 +22,7 @@ func CreateUser() gin.HandlerFunc {
 				"error": "your name or passowrd is empty!",
 			})
 		}
-		// по хорошему проверять занят ли ник но по task нету уточнений
+		// по хорошему проверять занят ли ник, но по task нету уточнений
 		db.CreateUser(userRepo, &jsonInput)
 		c.Status(http.StatusCreated)
 	}

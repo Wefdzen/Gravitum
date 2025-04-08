@@ -9,6 +9,7 @@ type ConfigDatabase struct {
 }
 
 func LaunchConfigFile() ConfigDatabase {
+	//can use cleanenv
 	var cfg ConfigDatabase
 	cfg.PG_host = "postgres"
 	cfg.PG_port = "5432"

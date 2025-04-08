@@ -8,3 +8,9 @@ cd Gravitum
 docker-compose up -d
 
 ```
+
+# Swagger
+
+Once the application is running, you can access the Swagger UI at the following address:
+
+http://localhost:8080/ui-swagger/index.html

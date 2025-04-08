@@ -12,17 +12,13 @@ import (
 // calls the repository to fetch the user information from the database.
 func GetUserInfo() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		var jsonInput db.User
-		if err := c.BindJSON(&jsonInput); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		}
+		username := c.Query("username")
 		userRepo := db.NewGormUserRepository()
-		res := db.GetUserInfo(userRepo, jsonInput.UserName)
+		res := db.GetUserInfo(userRepo, username)
 		if res.UserName == "" {
 			c.Status(http.StatusNotFound)
 			return
 		}
-		c.Status(http.StatusOK)
 		c.JSON(http.StatusOK, res)
 	}
 }
