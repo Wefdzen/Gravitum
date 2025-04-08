@@ -23,6 +23,9 @@ func UpdateUserInfo() gin.HandlerFunc {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		}
 		userRepo := db.NewGormUserRepository()
+		if jsonInput.UserName == "" || jsonInput.NewNameUser == "" || jsonInput.NewPassword == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input"})
+		}
 		db.UpdateUserInfo(userRepo, jsonInput.UserName, jsonInput.NewNameUser, jsonInput.NewPassword)
 		c.Status(http.StatusOK)
 	}
