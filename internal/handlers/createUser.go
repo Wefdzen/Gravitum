@@ -21,6 +21,7 @@ func CreateUser() gin.HandlerFunc {
 			c.JSON(http.StatusBadRequest, gin.H{
 				"error": "your name or passowrd is empty!",
 			})
+			return
 		}
 		// по хорошему проверять занят ли ник, но по task нету уточнений
 		db.CreateUser(userRepo, &jsonInput)

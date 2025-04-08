@@ -11,7 +11,7 @@ type ConfigDatabase struct {
 func LaunchConfigFile() ConfigDatabase {
 	//can use cleanenv
 	var cfg ConfigDatabase
-	cfg.PG_host = "postgres"
+	cfg.PG_host = "postgres" // if use in local machine with only docker(postgres) change to localhost
 	cfg.PG_port = "5432"
 	cfg.PG_user = "postgres"
 	cfg.PG_db_name = "postgres"
